@@ -1,0 +1,34 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import Cards from './Card/Cards'
+import { useCardGame } from '../../../hooks/useCardGame'
+import bgImage from '../../../assets/game_magic/bgFlasks.png'
+import blueRobot from '../../../assets/game_robots/blueRobot.png'
+import orangeRobot from '../../../assets/game_robots/orangeRobot.png'
+import yellowRobot from '../../../assets/game_robots/yellowRobot.png'
+import greenRobot from '../../../assets/game_robots/greenRobot.png'
+import pinkRobot from '../../../assets/game_robots/pinkRobot.png'
+import whiteRobot from '../../../assets/game_robots/whiteRobot.png'
+
+
+const imagesForGame = [
+  { src: blueRobot },
+  { src: orangeRobot },
+  { src: yellowRobot },
+  { src: greenRobot },
+  { src: pinkRobot },
+  { src: whiteRobot }
+]
+
+
+const robots = () => {
+  const {cards, turns, handleNewGame} = useCardGame(imagesForGame)
+
+  return (
+    <Cards cards={cards} bgImage={bgImage} />
+  )
+}
+
+export default robots
+
+const styles = StyleSheet.create({})
