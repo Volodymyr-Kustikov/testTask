@@ -9,16 +9,16 @@ import pinkFlask from '../../../assets/game_magic/pinkFlask.png'
 
 
 const imagesForGame = [
-  { src: greenFlask },
-  { src: orangeFlask },
-  { src: pinkFlask }
+  { src: greenFlask, matched: false},
+  { src: orangeFlask, matched: false},
+  { src: pinkFlask, matched: false}
 ]
 
 const Flasks = () => {
-  const {cards, turns, handleNewGame} = useCardGame(imagesForGame)
+  const {cards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
 
   return (
-    <Cards cards={cards} bgImage={bgImage} />
+    <Cards cards={cards} bgImage={bgImage} setTurns={setTurns}/>
   )
 }
 

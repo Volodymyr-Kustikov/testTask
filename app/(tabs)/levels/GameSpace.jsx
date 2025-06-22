@@ -8,17 +8,17 @@ import bgSpace from '../../../assets/game_space/bg.png'
 import Cards from './Card/Cards'
 
 const imagesForGame = [
-  { src: rocket },
-  { src: machine },
-  { src: bro }
+  { src: rocket , matched: false},
+  { src: machine, matched: false },
+  { src: bro, matched: false }
 ]
 
 const GameSpace = () => {
 
-  const {cards, turns, handleNewGame} = useCardGame(imagesForGame)
+  const {cards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
 
   return (
-    <Cards cards={cards} bgImage={bgSpace} />
+    <Cards cards={cards} bgImage={bgSpace} setTurns={setTurns}/>
   )
 }
 

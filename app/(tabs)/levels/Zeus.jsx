@@ -7,17 +7,17 @@ import Cards from './Card/Cards'
 
 
 const imagesForGame = [
-  {src: Colizei},
-  {src: Zeus},
+  {src: Colizei, matched: false},
+  {src: Zeus, matched: false},
 ]
 
 const ZeusGame = () => {
 
 
-  const {cards, turns, handleNewGame} = useCardGame(imagesForGame)
+  const {cards, setCards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
 
   return (
-    <Cards cards={cards} bgImage={zeusBg} />
+    <Cards cards={cards} setCards={setCards} bgImage={zeusBg} setTurns={setTurns}/>
   )
 }
 

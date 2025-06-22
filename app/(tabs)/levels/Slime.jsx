@@ -7,16 +7,16 @@ import { useCardGame } from '../../../hooks/useCardGame'
 import Cards from './Card/Cards'
 
 const imagesForGame = [
-  { src: yellowSlime },
-  { src: blueSlime },
-  { src: purpleSlime }
+  { src: yellowSlime, matched: false },
+  { src: blueSlime, matched: false },
+  { src: purpleSlime, matched: false }
 ]
 
 const SlimeGame = () => {
-  const {cards, turns, handleNewGame} = useCardGame(imagesForGame)
+  const {cards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
 
   return (
-    <Cards cards={cards} bgImage={bgImage} />
+    <Cards cards={cards} bgImage={bgImage} setTurns={setTurns} />
   )
 }
 

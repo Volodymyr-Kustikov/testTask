@@ -1,15 +1,39 @@
-import { StyleSheet, Text, View, Image, } from 'react-native'
-import React , {useState} from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React from 'react'
 import frontImage from '../../../../../assets/cards/back.png'
-import handleClick from '../handleFunc/handleFunction'
 
-const SingleCard = ({backImage}) => {
-
+const SingleCard = ({ backImage, onCardClick, flipped }) => {
+  const handleClick = () => {
+    onCardClick(backImage)
+  }
 
   return (
-    <View style={s.cardContainer} onPress ={()=>handleClick(backImage)} >
-      <Image source={frontImage} style={s.card}/>
-      <Image source={backImage} style={s.card}/>
+    <View>
+       return (
+  <View>
+    { flipped ? 
+      <TouchableOpacity
+        style={s.cardContainer}
+        onPress={() => handleClick(backImage)}
+      >
+        <Image
+          source={backImage}  // Show back image when flipped
+          style={s.card}
+        />
+      </TouchableOpacity>
+      :
+      <TouchableOpacity
+        style={s.cardContainer}
+        onPress={() => handleClick(backImage)}  // Always pass backImage
+      >
+        <Image
+          source={frontImage}  // Show front image when not flipped
+          style={s.card}
+        />
+      </TouchableOpacity>
+    }
+  </View>
+)
     </View>
   )
 }
