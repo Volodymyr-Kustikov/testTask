@@ -2,51 +2,47 @@ import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import SingleCard from './SingleCard/SingleCard'
 
-const Cards = ({ cards, setCards, bgImage, setTurns }) => {
+const Cards = ({ cards, setCards, bgImage, setTurns, setWrongMatches }) => {
   const [firstCard, setFirstCard] = useState(null)
   const [secondCard, setSecondCard] = useState(null)
 
-  const handleCardClick = (backImage) => {
-          if (backImage === firstCard || backImage === secondCard) {
-    return
+const handleCardClick = (clickedCard) => {
+  if (clickedCard.matched) return;
+
+  if (firstCard && firstCard === clickedCard) return; // prevent double click on same
+
+  if (!firstCard) {
+    setFirstCard(clickedCard);
+  } else if (!secondCard) {
+    setSecondCard(clickedCard);
   }
-  
+};
+
+useEffect(() => {
   if (firstCard && secondCard) {
-    return
-  }
-  
-    if (firstCard) {
-      setSecondCard(backImage)
-    } else {
-      setFirstCard(backImage)
-    }
-    console.log('First card:', firstCard)
-    console.log('Second card:', secondCard)
-    console.log('Clicked card:', backImage)
-  }
-
-  useEffect(() => {
-
-    if (firstCard && secondCard) {
-      if (firstCard === secondCard) {
+    const timer = setTimeout(() => {
+      if (firstCard.src === secondCard.src) {
         console.log('cards are matched')
-        setCards(prevCards=>{
+        setCards(prevCards => {
           return prevCards.map(card => {
-            if(card.src === firstCard) {
-              return {...card, matched: true} }
-              else {
-                return card
+            if (card.src === firstCard.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
             }
-          })
-        })
+          });
+        });
         resetTurns()
       } else {
-        console.log('cards arent matched (src comparison)')
-        resetTurns()
+        console.log('cards aren’t matched');
+        setWrongMatches(prev => prev + 1)
+        resetTurns();
       }
-    }
-  }, [firstCard, secondCard])
-  console.log(cards)
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }
+}, [firstCard, secondCard]);
 
   const resetTurns = () => {
     setFirstCard(null)
@@ -55,14 +51,16 @@ const Cards = ({ cards, setCards, bgImage, setTurns }) => {
   }
 
   return (
-    <ImageBackground source={bgImage} style={s.bgImage} resizeMode="cover">
+    <ImageBackground source={bgImage} style={s.bgImage}>
       <View style={s.containerGrid}>
         {cards.map((card, index) => (
-          <SingleCard 
+          <SingleCard
             key={index}
-            backImage={card.src} 
-            onCardClick={handleCardClick}
-            flipped={card.src === firstCard || card.src === secondCard || card.matched}
+            card={card}
+            onCardClick={() => handleCardClick(card)}
+            flipped={
+              card === firstCard || card === secondCard || card.matched
+            }
           />
         ))}
       </View>

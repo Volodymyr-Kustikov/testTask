@@ -11,6 +11,7 @@ import pinkRobot from '../../../assets/game_robots/pinkRobot.png'
 import whiteRobot from '../../../assets/game_robots/whiteRobot.png'
 
 
+
 const imagesForGame = [
   { src: blueRobot, matched: false },
   { src: orangeRobot, matched: false },
@@ -22,10 +23,10 @@ const imagesForGame = [
 
 
 const robots = () => {
-  const {cards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
+  const {cards, setCards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
 
   return (
-    <Cards cards={cards} bgImage={bgImage} setTurns={setTurns}/>
+    <Cards cards={cards} setCards={setCards} bgImage={bgImage} setTurns={setTurns}/>
   )
 }
 
