@@ -6,6 +6,8 @@ import bro from '../../../assets/game_space/blueBro.png'
 import { useCardGame } from '../../../hooks/useCardGame'
 import bgSpace from '../../../assets/game_space/bg.png'
 import Cards from './Card/Cards'
+import WinOrLose from './Card/WinOrLose'
+
 
 const imagesForGame = [
   { src: rocket , matched: false},
@@ -15,15 +17,40 @@ const imagesForGame = [
 
 const GameSpace = () => {
 
-  const {cards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
+   const {cards, setCards, turns, handleNewGame, setTurns,     showOverlay,
+    isWinner,
+    wrongMatches,
+    setWrongMatches,
+    handlePlayAgain,
+    handleCloseOverlay} = useCardGame(imagesForGame)
+  
 
   return (
-    <Cards cards={cards} bgImage={bgSpace} setTurns={setTurns}/>
+    <View style={s.container}>
+
+      <Cards
+        cards={cards} 
+        setCards={setCards} 
+        bgImage={bgSpace} 
+        setTurns={setTurns}
+        setWrongMatches={setWrongMatches}
+        />
+
+      <WinOrLose
+        visible={showOverlay}
+        isWinner={isWinner}
+        onPlayAgain={handlePlayAgain}
+        onClose={handleCloseOverlay}
+      />
+
+    </View>
   )
 }
 
 export default GameSpace
 
 const s = StyleSheet.create({
-  
+  container: {
+    flex: 1,
+  },
 })

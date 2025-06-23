@@ -16,38 +16,13 @@ const imagesForGame = [
 
 const ZeusGame = () => {
 
-  const {cards, setCards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
-  const [showOverlay, setShowOverlay] = useState(false)
-  const [isWinner, setIsWinner] = useState(false)
-  const [wrongMatches, setWrongMatches] = useState(0)
-
-    useEffect(() => {
-    if (cards.length > 0) {
-      const allMatched = cards.every(card => card.matched)
-      if (allMatched) {
-        setIsWinner(true)
-        setShowOverlay(true)
-      }
-    }
-  }, [cards])
-
-    useEffect(() => {
-    if (wrongMatches >= 1) {
-      setIsWinner(false)
-      setShowOverlay(true)
-    }
-  }, [wrongMatches])
-
-    const handlePlayAgain = () => {
-    setShowOverlay(false)
-    setIsWinner(false)
-    setWrongMatches(0)
-    handleNewGame()
-  }
-
-  const handleCloseOverlay = () => {
-    setShowOverlay(false)
-  }
+  const {cards, setCards, turns, handleNewGame, setTurns,     showOverlay,
+    isWinner,
+    wrongMatches,
+    setWrongMatches,
+    handlePlayAgain,
+    handleCloseOverlay} = useCardGame(imagesForGame)
+  
 
   return (
     <View style={s.container}>

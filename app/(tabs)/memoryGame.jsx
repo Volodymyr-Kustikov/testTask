@@ -5,9 +5,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 const MemoryGame = () => {
   return (
       <LinearGradient
-            colors={['#43BCF0', '#541896', '#711280']}
-      locations={[0, 0.5591, 1]} // Approximating the percentage positions
-      style={styles.gradient}
+        colors={['#43BCF0', '#541896', '#711280']}
+        locations={[0, 0.5591, 1]}
+        style={styles.gradient}
       >
         <View style={styles.startPage}>
           <Link href={'/levels'} style={styles.startPageButton}>
@@ -18,6 +18,23 @@ const MemoryGame = () => {
   )
 }
 
+
+
 export default MemoryGame
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  startPage:{
+
+  },
+
+  startPageButton:{
+    backgroundColor:"red",
+    padding: 30,
+    fontSize:30,
+  },
+    gradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})

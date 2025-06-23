@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Modal,
-  Dimensions,
-} from 'react-native';
+import {View, Text,TouchableOpacity,StyleSheet,Modal,Dimensions} from 'react-native';
+import { Link, router } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 
@@ -33,12 +27,13 @@ const WinOrLose = ({ visible, isWinner, onPlayAgain, onClose }) => {
                 <Text style={styles.buttonText}>🔄</Text>
               </TouchableOpacity>
               
-              <TouchableOpacity 
+              <Link 
+                href={'/levels'}
                 style={styles.closeButton} 
                 onPress={onClose}
               >
                 <Text style={styles.buttonText}>❌</Text>
-              </TouchableOpacity>
+              </Link>
             </View>
           </View>
         </View>
@@ -50,7 +45,7 @@ const WinOrLose = ({ visible, isWinner, onPlayAgain, onClose }) => {
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent dark background
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -60,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   messageBox: {
-    backgroundColor: 'rgba(135, 206, 250, 0.95)', // Light blue with transparency
+    backgroundColor: 'rgba(135, 206, 250, 0.95)',
     borderRadius: 20,
     padding: 30,
     alignItems: 'center',
@@ -71,14 +66,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 10,
-    elevation: 10, // For Android shadow
+    elevation: 10,
     borderWidth: 3,
     borderColor: 'rgba(255, 255, 255, 0.3)',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4B0082', // Deep purple color
+    color: '#4B0082',
     marginBottom: 20,
     textAlign: 'center',
     textShadowColor: 'rgba(255, 255, 255, 0.8)',
@@ -110,6 +105,7 @@ const styles = StyleSheet.create({
   closeButton: {
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderRadius: 25,
+    padding:'auto',
     width: 50,
     height: 50,
     justifyContent: 'center',
@@ -125,6 +121,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
+    textAlign:'center',
+    justifyContent:'center',
+    paddingTop:8
   },
 });
 

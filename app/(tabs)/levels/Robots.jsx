@@ -9,6 +9,7 @@ import yellowRobot from '../../../assets/game_robots/yellowRobot.png'
 import greenRobot from '../../../assets/game_robots/greenRobot.png'
 import pinkRobot from '../../../assets/game_robots/pinkRobot.png'
 import whiteRobot from '../../../assets/game_robots/whiteRobot.png'
+import WinOrLose from './Card/WinOrLose'
 
 
 
@@ -23,13 +24,40 @@ const imagesForGame = [
 
 
 const robots = () => {
-  const {cards, setCards, turns, handleNewGame, setTurns} = useCardGame(imagesForGame)
+  const {cards, setCards, turns, handleNewGame, setTurns,     showOverlay,
+    isWinner,
+    wrongMatches,
+    setWrongMatches,
+    handlePlayAgain,
+    handleCloseOverlay} = useCardGame(imagesForGame)
+  
 
   return (
-    <Cards cards={cards} setCards={setCards} bgImage={bgImage} setTurns={setTurns}/>
+    <View style={s.container}>
+
+      <Cards
+        cards={cards} 
+        setCards={setCards} 
+        bgImage={bgImage} 
+        setTurns={setTurns}
+        setWrongMatches={setWrongMatches}
+        />
+
+      <WinOrLose
+        visible={showOverlay}
+        isWinner={isWinner}
+        onPlayAgain={handlePlayAgain}
+        onClose={handleCloseOverlay}
+      />
+
+    </View>
   )
 }
 
 export default robots
 
-const styles = StyleSheet.create({})
+const s = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
