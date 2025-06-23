@@ -1,4 +1,4 @@
-Here is memory game card.
+Here is (  incompleted:(  ) memory game card.
 
 Implemented:
 -user geo
