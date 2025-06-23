@@ -1,44 +1,39 @@
 import React from 'react';
-import {View, Text,TouchableOpacity,StyleSheet,Modal,Dimensions} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Modal, Dimensions} from 'react-native';
 import { Link, router } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const { width, height } = Dimensions.get('window');
 
 const WinOrLose = ({ visible, isWinner, onPlayAgain, onClose }) => {
   return (
-    <Modal
-      visible={visible}
-      transparent={true}
-      animationType="fade"
-      onRequestClose={onClose}
-    >
+  <LinearGradient
+  colors={['#2BD5E8', '#8864E8', ]}
+          locations={[0, 1]}
+
+  >
+
+    <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
           <View style={styles.messageBox}>
             <Text style={styles.title}>
               {isWinner ? 'YOU WON!' : 'GAME OVER!'}
             </Text>
-            
             <View style={styles.buttonContainer}>
-              <TouchableOpacity 
-                style={styles.playAgainButton} 
-                onPress={onPlayAgain}
-              >
+              <TouchableOpacity style={styles.playAgainButton} onPress={onPlayAgain}>
                 <Text style={styles.buttonText}>🔄</Text>
               </TouchableOpacity>
-              
-              <Link 
-                href={'/levels'}
-                style={styles.closeButton} 
-                onPress={onClose}
-              >
+              <TouchableOpacity style={styles.closeButton} onPress={onClose}>
                 <Text style={styles.buttonText}>❌</Text>
-              </Link>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
       </View>
     </Modal>
+  </LinearGradient>
   );
 };
 
@@ -105,7 +100,6 @@ const styles = StyleSheet.create({
   closeButton: {
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderRadius: 25,
-    padding:'auto',
     width: 50,
     height: 50,
     justifyContent: 'center',
@@ -121,9 +115,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
-    textAlign:'center',
-    justifyContent:'center',
-    paddingTop:8
+    textAlign: 'center',
   },
 });
 

@@ -9,7 +9,7 @@ const Cards = ({ cards, setCards, bgImage, setTurns, setWrongMatches }) => {
 const handleCardClick = (clickedCard) => {
   if (clickedCard.matched) return;
 
-  if (firstCard && firstCard === clickedCard) return; // prevent double click on same
+  if (firstCard && firstCard === clickedCard) return;
 
   if (!firstCard) {
     setFirstCard(clickedCard);

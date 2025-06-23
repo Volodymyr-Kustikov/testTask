@@ -11,7 +11,7 @@ const MemoryGame = () => {
       >
         <View style={styles.startPage}>
           <Link href={'/levels'} style={styles.startPageButton}>
-            Go to levels
+            Start
           </Link>
         </View>
       </LinearGradient>
@@ -24,13 +24,17 @@ export default MemoryGame
 
 const styles = StyleSheet.create({
   startPage:{
-
+    
   },
 
   startPageButton:{
-    backgroundColor:"red",
-    padding: 30,
-    fontSize:30,
+    backgroundColor:'#43BCF0',
+    width:100,
+    textAlign:'center',
+    padding: 12,
+    fontSize:20,
+    color: '#fff',
+    borderRadius: 80
   },
     gradient: {
     flex: 1,

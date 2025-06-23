@@ -11,16 +11,14 @@ const getLocation = () => {
 
   const getUserLocation = async () => {
     try {
-      // Request permission
       let { status } = await Location.requestForegroundPermissionsAsync();
       
-      if (status !== 'granted') { // Fixed typo: 'granded' -> 'granted'
+      if (status !== 'granted') {
         setErrorMessage('Permission to access location was denied');
         setLoading(false);
         return;
       }
 
-      // Get current position
       let location = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.High,
       });
@@ -28,8 +26,8 @@ const getLocation = () => {
       if (location) {
         const { latitude, longitude } = location.coords;
         
-        // Log to terminal/console
-        console.log("=== CURRENT LOCATION ===");
+        // Log to terminal
+        console.log("CURRENT LOCATION");
         console.log("Latitude:", latitude);
         console.log("Longitude:", longitude);
         console.log("Accuracy:", location.coords.accuracy, "meters");
@@ -38,7 +36,6 @@ const getLocation = () => {
         setLatitude(latitude);
         setLongitude(longitude);
 
-        // Get address from coordinates
         try {
           let response = await Location.reverseGeocodeAsync({
             latitude,

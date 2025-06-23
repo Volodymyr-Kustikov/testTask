@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'expo-router'
 import { LinearGradient } from 'expo-linear-gradient'
 const { width } = Dimensions.get('window');
-const imageSize = (width * 0.35) - 20; // where 30 is wishes size
+const imageSize = (width * 0.35) - 20;
 
 
 const levels = () => {

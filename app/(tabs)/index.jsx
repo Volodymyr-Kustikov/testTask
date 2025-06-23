@@ -8,10 +8,8 @@ import WhiteScreen from './whiteScreen.jsx';
 export default function HomeScreen() {
   const { latitude, longitude, errorMsg, address, loading } = getLocation();
 
-  // Debug logging
   console.log("HomeScreen render - loading:", loading, "address:", address);
 
-  // Show loading screen while getting location
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -21,13 +19,11 @@ export default function HomeScreen() {
     );
   }
 
-  // Show error screen if location failed
   if (errorMsg) {
     console.log("Location error, showing WhiteScreen:", errorMsg);
     return <WhiteScreen />;
   }
 
-  // Wait until we have a definitive address
   if (address === null || address === undefined) {
     return (
       <View style={styles.loadingContainer}>
@@ -37,7 +33,6 @@ export default function HomeScreen() {
     );
   }
 
-  // Your location logic
   const isUkraine = address && (
     address === "Ukraine" ||
     address === "UA" ||
@@ -45,11 +40,9 @@ export default function HomeScreen() {
     address.toLowerCase().includes("ukraine")
   );
 
-  console.log("Final render decision - address:", address, "showing MemoryGame:", address === "United States");
-
   return (
     <View style={styles.container}>
-      {address !== "United States" ? <WhiteScreen /> : <MemoryGame />}
+      {address !== isUkraine ? <WhiteScreen /> : <MemoryGame />}
     </View>
   );
 }
