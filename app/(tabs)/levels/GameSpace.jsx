@@ -17,12 +17,19 @@ const imagesForGame = [
 
 const GameSpace = () => {
 
-   const {cards, setCards, turns, handleNewGame, setTurns,     showOverlay,
+   const {
+    cards,
+    setCards, 
+    turns, 
+    handleNewGame, 
+    setTurns,     
+    showOverlay,
     isWinner,
     wrongMatches,
     setWrongMatches,
     handlePlayAgain,
-    handleCloseOverlay} = useCardGame(imagesForGame)
+    handleCloseOverlay
+  } = useCardGame(imagesForGame)
   
 
   return (

@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, View, TouchableOpacity, } from 'react-native';
+import { Platform, StyleSheet, View, } from 'react-native';
 import { Link } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -17,8 +17,6 @@ const MemoryGame = () => {
       </LinearGradient>
   )
 }
-
-
 
 export default MemoryGame
 

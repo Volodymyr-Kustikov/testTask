@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, View, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MemoryGame from './memoryGame.jsx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import getLocation from '../../hooks/getLocation.jsx';
@@ -7,9 +7,10 @@ import WhiteScreen from './whiteScreen.jsx';
 
 export default function HomeScreen() {
   const { latitude, longitude, errorMsg, address, loading } = getLocation();
-
+  
   console.log("HomeScreen render - loading:", loading, "address:", address);
 
+  // Render logic
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -42,7 +43,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {address !== isUkraine ? <WhiteScreen /> : <MemoryGame />}
+      {address !== 'United States' ? <WhiteScreen /> : <MemoryGame />}
     </View>
   );
 }

@@ -1,10 +1,16 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Image, ImageBackground,Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import SingleCard from './SingleCard/SingleCard'
+import Header from './Header'
 
 const Cards = ({ cards, setCards, bgImage, setTurns, setWrongMatches }) => {
   const [firstCard, setFirstCard] = useState(null)
   const [secondCard, setSecondCard] = useState(null)
+  const screenWidth = Dimensions.get('window').width;
+
+  const numCards = cards.length;
+  const columns = numCards < 12 ? 2 : 3;
+  const cardSize = numCards < 12 ? 150 : 100;
 
 const handleCardClick = (clickedCard) => {
   if (clickedCard.matched) return;
@@ -51,26 +57,35 @@ useEffect(() => {
   }
 
   return (
-    <ImageBackground source={bgImage} style={s.bgImage}>
-      <View style={s.containerGrid}>
-        {cards.map((card, index) => (
-          <SingleCard
-            key={index}
-            card={card}
-            onCardClick={() => handleCardClick(card)}
-            flipped={
-              card === firstCard || card === secondCard || card.matched
-            }
+    <View style={s.container}>
+      <Header/>
+      <ImageBackground source={bgImage} style={s.bgImage}>
+        <View style={s.containerGrid}>
+          {cards.map((card, index) => (
+            <SingleCard
+              key={index}
+              card={card}
+              onCardClick={() => handleCardClick(card)}
+              flipped={
+                card === firstCard || card === secondCard || card.matched
+              }
+              cardSize={cardSize}
+              columns={columns}
           />
-        ))}
-      </View>
-    </ImageBackground>
+          ))}
+        </View>
+      </ImageBackground>
+    </View>
   )
 }
 
 export default Cards
 
 const s = StyleSheet.create({
+  container:{
+    flex:1,
+  },
+
   text: {
     fontSize: 50
   },
@@ -81,5 +96,7 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 10,
+        justifyContent: 'center',
+    alignItems: 'center',
   }
 })

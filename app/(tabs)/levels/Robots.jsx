@@ -26,18 +26,6 @@ const imagesForGame = [
 
 
 const robots = () => {
-  const {
-    images: imagesForGame,
-    isLoading: isLoadingImages,
-    error: storageError,
-    addImage,
-    removeImage,
-    updateImageProperty,
-    resetToDefaults,
-    clearStorage,
-    imageCount,
-    hasError
-  } = useImageStorage(defaultImagesForGame, '@robots_game_images');
 
   const {
     cards, 
@@ -52,48 +40,6 @@ const robots = () => {
     handlePlayAgain,
     handleCloseOverlay
   } = useCardGame(imagesForGame)
-
-  const handlePlayAgainWithStorage = async () => {
-    try {
-      handlePlayAgain();
-      for (let i = 0; i < imagesForGame.length; i++) {
-        await updateImageProperty(i, 'matched', false);
-      }
-    } catch (error) {
-      console.error('Error in play again with storage:', error);
-      handlePlayAgain()
-    }
-  };
-
-  const addNewRobot = async (robotImage) => {
-    const success = await addImage({ src: robotImage, matched: false });
-    if (success) {
-      console.log('New robot added successfully!');
-    }
-  };
-
-  const removeRobotByIndex = async (index) => {
-    const success = await removeImage(index);
-    if (success) {
-      console.log(`Robot at index ${index} removed successfully!`);
-    }
-  };
-
-  const resetAllRobots = async () => {
-    const success = await resetToDefaults();
-    if (success) {
-      console.log('All robots reset to defaults!');
-    }
-  };
-
-  if (isLoadingImages) {
-    return (
-      <View style={[s.container, s.centerContent]}>
-        <ActivityIndicator size="large" color="#43BCF0" />
-        <Text style={s.loadingText}>Loading robot images...</Text>
-      </View>
-    );
-  }
   
 
   return (

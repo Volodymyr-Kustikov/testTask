@@ -11,7 +11,6 @@ const WinOrLose = ({ visible, isWinner, onPlayAgain, onClose }) => {
   <LinearGradient
   colors={['#2BD5E8', '#8864E8', ]}
           locations={[0, 1]}
-
   >
 
     <Modal visible={visible} transparent animationType="fade">

@@ -16,7 +16,12 @@ const imagesForGame = [
 
 const ZeusGame = () => {
 
-  const {cards, setCards, turns, handleNewGame, setTurns,     showOverlay,
+  const {cards, 
+    setCards, 
+    turns, 
+    handleNewGame, 
+    setTurns,     
+    showOverlay,
     isWinner,
     wrongMatches,
     setWrongMatches,
