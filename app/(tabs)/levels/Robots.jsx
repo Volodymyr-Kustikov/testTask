@@ -10,9 +10,6 @@ import greenRobot from '../../../assets/game_robots/greenRobot.png'
 import pinkRobot from '../../../assets/game_robots/pinkRobot.png'
 import whiteRobot from '../../../assets/game_robots/whiteRobot.png'
 import WinOrLose from './Card/WinOrLose'
-import imageStorage from '../../../utils/imagesStore'
-import {useImageStore} from '../../../hooks/useImageStore'
-
 
 
 const imagesForGame = [

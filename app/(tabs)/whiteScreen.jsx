@@ -3,12 +3,18 @@ import React from 'react'
 
 const WhiteScreen = () => {
   return (
-    <View>
-      <Text>Geolocation Error. Write to our support team to get more info</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>Geolocation Error. Write to our support team to get more info</Text>
     </View>
   )
 }
 
 export default WhiteScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    textAlign: 'center',
+    justifyContent:'center'
+  }
+})

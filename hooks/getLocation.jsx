@@ -93,7 +93,6 @@ const getLocation = () => {
         const storedLocation = JSON.parse(storedLocationString);
         console.log('Found stored location:', storedLocation);
         
-        // Check if stored location is not too old (optional - you can adjust or remove this)
         const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
         
         if (storedLocation.timestamp && storedLocation.timestamp > oneWeekAgo) {
@@ -111,7 +110,7 @@ const getLocation = () => {
         console.log('No stored location found');
       }
       
-      return false; // No valid stored location found
+      return false; 
     } catch (error) {
       console.error('Error reading location from AsyncStorage:', error);
       return false;

@@ -43,7 +43,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {address !== 'United States' ? <WhiteScreen /> : <MemoryGame />}
+      {address !== isUkraine ? <WhiteScreen /> : <MemoryGame />}
     </View>
   );
 }
